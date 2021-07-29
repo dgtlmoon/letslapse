@@ -24,7 +24,7 @@ from os import path
 
 
 #extracted utils for broader use and more component oriented approach
-import ll_brightness
+from server import ll_brightness
 
 
 
