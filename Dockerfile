@@ -4,15 +4,17 @@ FROM python:3.8-slim
 RUN apt-get update
 
 # Now continue like in https://github.com/dgtlmoon/letslapse/blob/7bd56546b2d8492a564a2da847ee6fc77fc5150b/install.sh#L17
-RUN set
-RUN echo "Build target is $TARGETPLATFORM"
+RUN dpkgArch="$(dpkg --print-architecture)"
+RUN echo "Build target is $dpkgArch"
 
 # Install camera library depending on platform
-RUN set -eux; \
-	case "$TARGETPLATFORM" in \
-		linux/arm/v6) apt-get install python-picamera python3-picamera -y ;; \
-		linux/arm/v7) apt-get install python-picamera python3-picamera -y ;; \
-	esac;
+RUN CAMERALIB= &&  \
+  && case "${dpkgArch##*-}" in \
+    amd64) echo unsure ;; \
+    arm64) apt-get install python-picamera python3-picamera -y ;; \
+    armv7l) apt-get install python-picamera python3-picamera -y ;; \
+    *) echo "unsupported $dpkgArch "; exit 1 ;; \
+  esac
 
 
 RUN apt-get install libopenjp2-7 libopenjp2-7-dev libopenjp2-tools libatlas-base-dev -y
