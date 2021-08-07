@@ -6,7 +6,10 @@ RUN apt-get update
 # Now continue like in https://github.com/dgtlmoon/letslapse/blob/7bd56546b2d8492a564a2da847ee6fc77fc5150b/install.sh#L17
 
 # This stuff appears to be only available for arm?
-RUN export arm_only_packages="libIlmImf-2_2-23 python-picamera python3-picamera"
+#RUN export arm_only_packages="libIlmImf-2_2-23 python-picamera python3-picamera"
+
+# Apparently fake-rpi will give you python3-camera etc for build envs
+RUN export arm_only_packages="libIlmImf-2_2-23 fake-rpi"
 
 # Install camera library depending on platform
 RUN export dpkgArch="$(dpkg --print-architecture)" && echo "Build target is $dpkgArch"  \
