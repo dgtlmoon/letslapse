@@ -13,7 +13,8 @@ RUN export dpkgArch="$(dpkg --print-architecture)" && echo "Build target is $dpk
   && case "${dpkgArch##*-}" in \
     amd64) echo "nothing to add" ;; \
     arm64) apt-get install $arm_only_packages -y ;; \
-    armv7l) apt-get install $arm_only_packages y ;; \
+    armhf) apt-get install $arm_only_packages y ;; \
+    armel) apt-get install $arm_only_packages y ;; \
     *) echo "nothing specific for $dpkgArch ";  ;; \
   esac
 
