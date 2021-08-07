@@ -1,9 +1,11 @@
 # Maybe ubuntu is better here, unsure yet
 FROM python:3.8-slim
 
-RUN apt-get update && apt-get upgrade &&  apt-get install git bc python3-pip -y
+RUN apt-get update && apt-get upgrade
 
 # Now continue like in https://github.com/dgtlmoon/letslapse/blob/7bd56546b2d8492a564a2da847ee6fc77fc5150b/install.sh#L17
+
+# These are better than what's in pip?
 RUN apt-get-get install python-picamera python3-picamera -y
 
 RUN apt-get-get install libopenjp2-7 libopenjp2-7-dev libopenjp2-tools libatlas-base-dev -y
