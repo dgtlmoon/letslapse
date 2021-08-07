@@ -12,12 +12,13 @@ FROM python:3.8.11-slim-buster
 RUN apt-get update && export dpkgArch="$(dpkg --print-architecture)" && echo "Build target is $dpkgArch"  \
   && case "${dpkgArch##*-}" in \
     amd64) echo "nothing to add" ;; \
-    arm64) apt-get install libIlmImf-2_2-23 -y && pip3 install fake-rpi ;; \
-    armhf) apt-get install libIlmImf-2_2-23 -y && pip3 install fake-rpi ;; \
-    armel) apt-get install libIlmImf-2_2-23 -y && pip3 install fake-rpi ;; \
+    arm64) pip3 install fake-rpi ;; \
+    armhf) pip3 install fake-rpi ;; \
+    armel) pip3 install fake-rpi ;; \
     *) echo "nothing specific for $dpkgArch ";  ;; \
   esac
 
+# not sure how to solve the missing  libIlmImf-2_2-23 , i think it is now called libopenexr24
 
 RUN apt-get install libopenjp2-7 libopenjp2-7-dev libopenjp2-tools libatlas-base-dev -y
 
