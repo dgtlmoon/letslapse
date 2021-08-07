@@ -9,15 +9,14 @@ RUN apt-get update
 #RUN export arm_only_packages="libIlmImf-2_2-23 python-picamera python3-picamera"
 
 # Apparently fake-rpi will give you python3-camera etc for build envs
-RUN export arm_only_packages="libIlmImf-2_2-23 fake-rpi"
 
 # Install camera library depending on platform
 RUN export dpkgArch="$(dpkg --print-architecture)" && echo "Build target is $dpkgArch"  \
   && case "${dpkgArch##*-}" in \
     amd64) echo "nothing to add" ;; \
-    arm64) apt-get install $arm_only_packages -y ;; \
-    armhf) apt-get install $arm_only_packages -y ;; \
-    armel) apt-get install $arm_only_packages -y ;; \
+    arm64) apt-get install libIlmImf-2_2-23 -y && pip3 install fake-rpi ;; \
+    armhf) apt-get install libIlmImf-2_2-23 -y && pip3 install fake-rpi ;; \
+    armel) apt-get install libIlmImf-2_2-23 -y && pip3 install fake-rpi ;; \
     *) echo "nothing specific for $dpkgArch ";  ;; \
   esac
 
