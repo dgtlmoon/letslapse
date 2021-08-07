@@ -1,17 +1,15 @@
 # Maybe ubuntu is better here, unsure yet
 FROM python:3.8-slim
 
-RUN apt update && apt upgrade &&  apt install git bc python3-pip -y
-RUN apt install libopenjp2-7 libopenjp2-7-dev libopenjp2-tools libatlas-base-dev
+RUN apt-get update && apt-get upgrade &&  apt-get install git bc python3-pip -y
 
 # Now continue like in https://github.com/dgtlmoon/letslapse/blob/7bd56546b2d8492a564a2da847ee6fc77fc5150b/install.sh#L17
-RUN apt-get install python-picamera python3-picamera -y
+RUN apt-get-get install python-picamera python3-picamera -y
 
-# Numpy and dependencies
-RUN apt-get install libatlas-base-dev -y
+RUN apt-get-get install libopenjp2-7 libopenjp2-7-dev libopenjp2-tools libatlas-base-dev -y
 
 # OpenCV and dependencies
-RUN apt install libtiff5 \
+RUN apt-get install libtiff5 \
     libwebp-dev \
     libopenjp2-7 \
     libIlmImf-2_2-23 \
