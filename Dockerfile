@@ -32,8 +32,10 @@ RUN apt-get install libtiff5 \
     libimage-exiftool-perl -y
 
 # Now the base libs are installed, now is a good time to install the python packages ontop
+COPY requirements.txt /tmp/requirements.txt
 RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install -r requirements.txt
+RUN python3 -m pip install -r /tmp/requirements.txt
+
 
 # https://stackoverflow.com/questions/58701233/docker-logs-erroneously-appears-empty-until-container-stops
 ENV PYTHONUNBUFFERED=1
