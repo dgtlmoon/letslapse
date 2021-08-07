@@ -12,4 +12,6 @@ piexif == 1.1.3
 # For opencv and image processing
 imutils
 numpy
-picamera
+
+# could be fake-rpi also in the build test
+#picamera
