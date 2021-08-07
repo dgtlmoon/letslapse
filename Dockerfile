@@ -1,7 +1,5 @@
 # Maybe ubuntu is better here, unsure yet
-FROM python:3.8-slim
-
-RUN apt-get update
+FROM python:3.8.11-slim-buster
 
 # Now continue like in https://github.com/dgtlmoon/letslapse/blob/7bd56546b2d8492a564a2da847ee6fc77fc5150b/install.sh#L17
 
@@ -11,7 +9,7 @@ RUN apt-get update
 # Apparently fake-rpi will give you python3-camera etc for build envs
 
 # Install camera library depending on platform
-RUN export dpkgArch="$(dpkg --print-architecture)" && echo "Build target is $dpkgArch"  \
+RUN apt-get update && export dpkgArch="$(dpkg --print-architecture)" && echo "Build target is $dpkgArch"  \
   && case "${dpkgArch##*-}" in \
     amd64) echo "nothing to add" ;; \
     arm64) apt-get install libIlmImf-2_2-23 -y && pip3 install fake-rpi ;; \
