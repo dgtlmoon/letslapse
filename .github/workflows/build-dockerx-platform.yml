@@ -4,7 +4,9 @@ name: Dockerx multi-platform build
 
 on:
   push:
-    branches: [ master, dev ]
+    branches:
+    - "*"
+    #- [ master, dev ]
 
 jobs:
   build:
