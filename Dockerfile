@@ -34,6 +34,9 @@ RUN apt-get install libtiff5 \
 
 # Now the base libs are installed, now is a good time to install the python packages ontop
 COPY requirements.txt /tmp/requirements.txt
+
+# numpy sys build requirements
+RUN apt-get install automake gcc g++ subversion python3-dev -y
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install -r /tmp/requirements.txt
 
