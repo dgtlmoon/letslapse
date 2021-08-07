@@ -9,12 +9,13 @@ FROM python:3.8.11-slim-buster
 # Apparently fake-rpi will give you python3-camera etc for build envs
 
 # Install camera library depending on platform
+# arm need fortran for numpy
 RUN apt-get update && export dpkgArch="$(dpkg --print-architecture)" && echo "Build target is $dpkgArch"  \
   && case "${dpkgArch##*-}" in \
     amd64) echo "nothing to add" ;; \
-    arm64) pip3 install fake-rpi ;; \
-    armhf) pip3 install fake-rpi ;; \
-    armel) pip3 install fake-rpi ;; \
+    arm64) apt-get install gfortran -y; pip3 install fake-rpi ;; \
+    armhf) apt-get install gfortran -y; pip3 install fake-rpi ;; \
+    armel) apt-get install gfortran -y; pip3 install fake-rpi ;; \
     *) echo "nothing specific for $dpkgArch ";  ;; \
   esac
 
